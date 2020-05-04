@@ -2,10 +2,13 @@ package sql_0503_2;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -16,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class stu_scoer extends Panel implements ActionListener {
@@ -23,14 +27,15 @@ public class stu_scoer extends Panel implements ActionListener {
 	String stu_id;
 
 	// 定义组件
-
+	
+	JLabel jCnl = null;
 	JLabel jLStudentInfoTable = null;//学生信息表
-
+	JTextField jCnc = null;//课程号
 	//定义界面上的button
 
-	JButton jBQuery = null;//查询
+	JButton jBQuery,jBDelte = null;//查询
 
-	JPanel jP1, jP2,jP3 = null;
+	JPanel jP1, jP2,jP3,jP4= null;
 
 	JPanel jPTop, jPBottom = null;
 
@@ -58,11 +63,13 @@ public class stu_scoer extends Panel implements ActionListener {
 		jLStudentInfoTable = new JLabel("学生表");
 
 		jBQuery = new JButton("查询");
-
+		jBDelte =new JButton("取消选课");
+		jCnl = new JLabel("课程号");//课程号
+		jCnc = new JTextField(20);
 		// 设置监听
 
 		jBQuery.addActionListener(this);
-
+		jBDelte.addActionListener(this);
 		studentVector = new Vector();
 
 		titleVector = new Vector();
@@ -98,13 +105,41 @@ public class stu_scoer extends Panel implements ActionListener {
 		studentJScrollPane.setVerticalScrollBarPolicy(                
 
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		studentJTable.addMouseListener(new MouseAdapter()
+
+		{ 
+
+			public void mouseClicked(MouseEvent e) 
+
+			{ 
+
+				int row = ((JTable) e.getSource()).rowAtPoint(e.getPoint()); // 获得行位置
+
+				System.out.println("mouseClicked(). row = " + row);
+
+				Vector v = new Vector();
+
+				v = (Vector) studentVector.get(row);
+
+
+
+
+				//jTFSName.setText((String) v.get(1));// 姓名
+
+				jCnc.setText((String) v.get(2));// 课程号
+				
+
+			}
+
+		});
 
 		jP1 = new JPanel();
 
 		jP2 = new JPanel();
 
 		jP3 = new JPanel();
-
+		
+		jP4= new JPanel();
 		jPTop = new JPanel();
 
 		jPBottom = new JPanel();
@@ -118,15 +153,19 @@ public class stu_scoer extends Panel implements ActionListener {
 		jPTop.add(jP1);
 
 		jPTop.add(jP2);
+		
+		jP4.setLayout(new FlowLayout(FlowLayout.CENTER));
+		jP4.add(jCnl);
+		jP4.add(jCnc);
+		jPBottom.add(jBDelte);
+		this.add(jPTop);
 
-		jPBottom.setLayout(new GridLayout(3, 1));
-
-		jPBottom.add(jP3);
-		this.add("North", jPTop);
-
-		this.add("South", jPBottom);
-
-		this.setLayout(new GridLayout(2, 1));
+		this.add(jP3);
+		
+		this.add(jP4);
+		
+		this.add(jPBottom);
+		this.setLayout(new GridLayout(4, 1));
 
 		//this.setTitle("学生信息操作");
 
@@ -159,7 +198,12 @@ public class stu_scoer extends Panel implements ActionListener {
 
 				//jTFQueryField.setText("");
 
-			}
+		}
+		else if(e.getActionCommand().equals("取消选课") ) {
+			System.out.println("actionPerformed(). 取消选课");
+
+			deleteProcess();
+		}
 
 		}
 
@@ -172,7 +216,39 @@ public class stu_scoer extends Panel implements ActionListener {
     }
 
     */
+	public void deleteProcess() {
 
+		String cn = jCnc.getText().trim();
+		// 建立删除条件
+		if(cn.equals("")) {
+			JOptionPane.showMessageDialog(null,
+					"你还未选择课程","错误",JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		String sql = "delete from sc where sn = '" + stu_id + "' AND cn= '"+cn+"';";
+
+		System.out.println("deleteCurrentRecordProcess(). sql = " + sql);
+
+		try{
+
+			if (dbProcess.executeUpdate(sql) < 1) {
+
+				System.out.println("deleteCurrentRecordProcess(). delete database failed.");
+
+			}
+
+		}catch(Exception e){
+
+			System.out.println("e = " + e);
+
+			JOptionPane.showMessageDialog(null,
+
+				"数据操作错误","错误",JOptionPane.ERROR_MESSAGE);
+
+		}
+		queryProcess();
+		jCnc.setText("");
+	}
 	public void queryProcess()
 
 	{

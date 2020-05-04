@@ -54,11 +54,11 @@ public class couse_result extends Panel implements ActionListener {
 
 	JLabel jLcoom = null;//专业
 
-	JLabel jLteme = null;//住址
+	//JLabel jLteme = null;//住址
+	
+	JLabel jLcji = null;//学分
 
-	JLabel jLcji = null;//住址
-
-	JLabel jLtea = null;//住址
+	JLabel jLtea = null;//任课老师
 
 
 
@@ -74,11 +74,11 @@ public class couse_result extends Panel implements ActionListener {
 
 	JTextField jTFcoom = null;//专业
 
-	JTextField jTFtime = null;//住址
+	//JTextField jTFtime = null;//住址
 
-	JTextField jTFcji = null;//住址
+	JTextField jTFcji = null;//学分
 
-	JTextField jTFtea = null;//住址
+	JTextField jTFtea = null;//任课老师
 
 	
 
@@ -144,7 +144,7 @@ public class couse_result extends Panel implements ActionListener {
 
 		jLcoom = new JLabel("上课教室");
 
-		jLteme = new JLabel("上课时间");
+		//jLteme = new JLabel("上课时间");
 
 		jLcji = new JLabel("课程学分");
 
@@ -166,7 +166,7 @@ public class couse_result extends Panel implements ActionListener {
 
 		jTFcoom = new JTextField(14);//专业
 
-		jTFtime = new JTextField(14);//住址
+		//jTFtime = new JTextField(14);//住址
 
 		jTFcji = new JTextField(14);//住址
 
@@ -318,11 +318,11 @@ public class couse_result extends Panel implements ActionListener {
 
 				jTFcoom.setText((String) v.get(4));// 专业
 
-				jTFtime.setText((String) v.get(5));// 住址
+				//jTFtime.setText((String) v.get(5));// 住址
 
-				jTFcji.setText((String) v.get(6));// 住址
+				jTFcji.setText((String) v.get(5));// 住址
 
-				jTFtea.setText((String) v.get(7));// 住址
+				jTFtea.setText((String) v.get(6));// 住址
 
 			}
 
@@ -402,9 +402,9 @@ public class couse_result extends Panel implements ActionListener {
 
 		jP5.add(jTFcoom);
 
-		jP5.add(jLteme);
+		//jP5.add(jLteme);
 
-		jP5.add(jTFtime);
+		//jP5.add(jTFtime);
 
 		jP5.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -522,8 +522,6 @@ public class couse_result extends Panel implements ActionListener {
 
 				&& !jTFcoom.getText().isEmpty()
 
-				&& !jTFtime.getText().isEmpty()
-
 				&& !jTFcji.getText().isEmpty()
 
 				&& !jTFtea.getText().isEmpty()){
@@ -543,8 +541,6 @@ public class couse_result extends Panel implements ActionListener {
 				&& !jTFcname.getText().isEmpty()
 
 				&& !jTFcoom.getText().isEmpty()
-
-				&& !jTFtime.getText().isEmpty()
 
 				&& !jTFcji.getText().isEmpty()
 
@@ -762,7 +758,6 @@ public class couse_result extends Panel implements ActionListener {
 
 		String croom = jTFcoom.getText().trim();
 
-		String time = jTFtime.getText().trim();
 
 		String cji = jTFcji.getText().trim();
 
@@ -784,7 +779,6 @@ public class couse_result extends Panel implements ActionListener {
 
 		sql = sql + croom + "','";
 
-		sql = sql + time + "','";
 
 		sql = sql + cji + "','";
 
@@ -832,8 +826,6 @@ public class couse_result extends Panel implements ActionListener {
 
 		String croom = jTFcoom.getText().trim();
 
-		String time = jTFtime.getText().trim();
-
 		String cji = jTFcji.getText().trim();
 
 		String tea = jTFtea.getText().trim();
@@ -852,7 +844,6 @@ public class couse_result extends Panel implements ActionListener {
 
 		sql = sql + croom + "', time = '";
 
-		sql = sql + time + "', cji = '";
 
 		sql = sql + cji + "', teacher = '";
 
@@ -896,7 +887,7 @@ public class couse_result extends Panel implements ActionListener {
 
 		// 建立删除条件
 
-		String sql = "delete from change_couse where sno = '" + sno + "';";
+		String sql = "delete from sn where sn = '" + sno + "';";
 
 		System.out.println("deleteCurrentRecordProcess(). sql = " + sql);
 

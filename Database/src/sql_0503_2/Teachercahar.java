@@ -171,8 +171,9 @@ public class Teachercahar extends Panel implements ActionListener {
 		
 		jCBSelectQueryField.addItem("姓名");  
 
-		jCBSelectQueryField.addItem("系别");
-
+		jCBSelectQueryField.addItem("系别号");
+		
+		jCBSelectQueryField.addItem("薪水");
 		jCBSelectQueryField.addItemListener(new ItemListener() {//下拉框事件监听  
 
             public void itemStateChanged(ItemEvent event) {  
@@ -214,7 +215,8 @@ public class Teachercahar extends Panel implements ActionListener {
 		titleVector.add("姓名");
 
 		titleVector.add("系别");
-
+		
+		titleVector.add("薪水");
 		//studentTableModel = new DefaultTableModel(tableTitle, 15);
 
 		studentJTable = new JTable(studentVector, titleVector);
@@ -256,10 +258,10 @@ public class Teachercahar extends Panel implements ActionListener {
 
 
 				jTFSNo.setText((String) v.get(0));// 学号
-				jTFSDn.setText((String) v.get(1));// 学号
-				jTFSName.setText((String) v.get(2));// 姓名
+				jTFSDn.setText((String) v.get(2));// 学号
+				jTFSName.setText((String) v.get(1));// 姓名
 				jTFsalary.setText((String) v.get(3));// 学号
-
+				
 				//jTclass.setText((String) v.get(2));// 班级
 
 			}
@@ -480,7 +482,7 @@ public class Teachercahar extends Panel implements ActionListener {
 
 			// 建立查询条件
 
-			String sql = "select t.Tn, t.Tname, d.Dname from teacher t,departments d where t.Dn=d.Dn AND ";
+			String sql = "select t.Tn, t.Tname, d.Dn,t.Salary from teacher t,departments d where t.Dn=d.Dn AND ";
 
 			String queryFieldStr = jCBSelectQueryFieldTransfer(SelectQueryFieldStr);
 
@@ -526,8 +528,9 @@ public class Teachercahar extends Panel implements ActionListener {
 
 				v.add(rs.getString("t.Tname"));
 
-				v.add(rs.getString("d.Dname"));
-
+				v.add(rs.getString("d.Dn"));
+				
+				v.add(rs.getString("t.Salary"));
 				studentVector.add(v);
 
 			}
@@ -571,7 +574,7 @@ public class Teachercahar extends Panel implements ActionListener {
 			// 建立查询条件
 
 			//String sql = "select * from teacher;";
-			String sql = "select t.Tn, t.Tname, d.Dname from teacher t,departments d where t.Dn=d.Dn; ";
+			String sql = "select t.Tn, t.Tname, d.Dn,t.Salary from teacher t,departments d where t.Dn=d.Dn; ";
 
 			System.out.println("queryAllProcess(). sql = " + sql);
 
@@ -595,7 +598,9 @@ public class Teachercahar extends Panel implements ActionListener {
 
 				v.add(rs.getString("t.Tname"));
 
-				v.add(rs.getString("d.Dname"));
+				v.add(rs.getString("d.Dn"));
+				
+				v.add(rs.getString("t.Salary"));
 
 				studentVector.add(v);
 
@@ -815,7 +820,11 @@ public class Teachercahar extends Panel implements ActionListener {
 			outputStr = "d.Dname";
 
 		}
+		else if(InputStr.equals("薪水")){
 
+			outputStr = "t.Salary";
+
+		}
 		System.out.println("jCBSelectQueryFieldTransfer(). outputStr = " + outputStr);
 
 		return outputStr;

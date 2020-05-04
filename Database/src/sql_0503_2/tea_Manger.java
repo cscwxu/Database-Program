@@ -115,6 +115,7 @@ public class tea_Manger extends JFrame implements TreeSelectionListener {
 
 
 		js = new JSplitPane();
+		js.setDividerLocation(170);
 
 		js.setLeftComponent(tree);
 

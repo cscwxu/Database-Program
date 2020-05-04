@@ -224,8 +224,11 @@ public class course extends Panel implements ActionListener {
 			
 
 			// 定义表头
+			titleVector.add("课程号");
 
-			titleVector.add("教师");
+			titleVector.add("教师编号");
+
+			titleVector.add("教师名");
 
 			titleVector.add("课程名");
 
@@ -277,12 +280,12 @@ public class course extends Panel implements ActionListener {
 
 					jTteacher.setText((String) v.get(1));
 
-					jTCname.setText((String) v.get(2));// 姓名
+					jTCname.setText((String) v.get(3));// 姓名
 
-					jTwe_day.setText((String) v.get(3));// 班级
+					jTwe_day.setText((String) v.get(4));// 班级
 
-					jTcredit.setText((String) v.get(4));
-
+					jTcredit.setText((String) v.get(5));
+					
 					
 					
 
@@ -526,7 +529,7 @@ public class course extends Panel implements ActionListener {
 
 				// 建立查询条件
 
-				String sql = "select t.Tname, c.Cname, c.Credit, c.Chours from course c, teacher t where c.Tn=t.Tn AND ";
+				String sql = "select  c.Cn,t.Tn,t.Tname,c.Cname, c.Credit, c.Chours from course c, teacher t where c.Tn=t.Tn AND ";
 
 				String queryFieldStr = jCBSelectQueryFieldTransfer(SelectQueryFieldStr);
 
@@ -567,6 +570,7 @@ public class course extends Panel implements ActionListener {
 				while(rs.next()){
 
 					Vector v = new Vector();
+					v.add(rs.getString("t.Tn"));
 
 					v.add(rs.getString("t.Tname"));
 
@@ -619,7 +623,7 @@ public class course extends Panel implements ActionListener {
 				// 建立查询条件
 
 				//String sql = "select * from teacher_set;";
-				String sql = "select t.Tname, c.Cname, c.Credit, c.Chours from course c, teacher t where c.Tn=t.Tn ; ";
+				String sql = "select c.Cn,t.Tn,t.Tname,c.Cname, c.Credit, c.Chours from course c, teacher t where c.Tn=t.Tn ; ";
 
 				System.out.println("queryAllProcess(). sql = " + sql);
 
@@ -638,6 +642,10 @@ public class course extends Panel implements ActionListener {
 				while(rs.next()){
 
 					Vector v = new Vector();
+					
+					v.add(rs.getString("c.Cn"));
+					
+					v.add(rs.getString("t.Tn"));
 
 					v.add(rs.getString("t.Tname"));
 
@@ -762,6 +770,7 @@ public class course extends Panel implements ActionListener {
 			sql =sql +" WHERE Cn ='"+Cn+"';";
 
 			System.out.println("updateProcess(). sql = " + sql);
+			System.out.println(sql);
 
 			try{
 

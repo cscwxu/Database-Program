@@ -20,7 +20,7 @@ public class stu_CardEmploy extends Panel{
 
 	
 
-	Teachercahar teaE;
+	stu_select teaE;
 
 	
 
@@ -76,7 +76,7 @@ public class stu_CardEmploy extends Panel{
 
 		
 
-    	teaE = new Teachercahar();
+    	teaE = new stu_select(id);
 
     	
 

@@ -89,12 +89,12 @@ public class StuService {
     }
     
     public static void main(String[] args) {
-        /*List<Stu> all=getAllByDb();
+        List<Stu> all=getAllByDb();
         for (Stu stuEntity : all) {
             System.out.println(stuEntity.toString());
-        }*/
+        }
         
-        System.out.println(isExist(1));
+        //System.out.println(isExist(1));
         
     }
 }

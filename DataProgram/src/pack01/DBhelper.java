@@ -7,8 +7,8 @@ public class DBhelper {
     //连接数据库
     public void connect(){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stu","root","mzc277171");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lab5?useSSL=false&serverTimezone=UTC","root","qw6555013");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
 //            e.printStackTrace();

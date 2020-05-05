@@ -2,7 +2,7 @@ package sql_0503_2;
 
 import javax.swing.*;
 
-import uesless.tea_own_set;
+import useless.tea_own_set;
 
 import java.awt.*;
 

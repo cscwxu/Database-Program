@@ -124,7 +124,7 @@ import java.io.IOException;
 
 			public void actionPerformed(ActionEvent e) {
 
-					new Teacher_Login();
+					new Tea_Login();
 
 					getcon.setVisible(false);
 

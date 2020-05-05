@@ -22,7 +22,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class stu_scoer extends Panel implements ActionListener {
+public class Stu_ShowCourse extends Panel implements ActionListener {
 
 	String stu_id;
 
@@ -55,7 +55,7 @@ public class stu_scoer extends Panel implements ActionListener {
 
 	// 构造函数
 
-	public stu_scoer(String id) {
+	public Stu_ShowCourse(String id) {
 
 		stu_id=id;
 		// 创建组件	

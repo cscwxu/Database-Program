@@ -2,9 +2,11 @@ package sql_0503_2;
 
 import javax.swing.*;
 
+import uesless.tea_own_set;
+
 import java.awt.*;
 
-public class tea_CardEmploy extends Panel{
+public class Tea_CardEmploy extends Panel{
 
 	
 
@@ -12,19 +14,19 @@ public class tea_CardEmploy extends Panel{
 
     //查询表
 
-	tea_DatabaseCourseDesign selE;
+	Tea_TeacherInformation selE;
 
 	//添加表
 
-	tea_scoer addE;
+	Tea_StudentScore addE;
 
 	
 
-	Teachercahar teaE;
+	Man_TeacherInformation teaE;
 
 	
 
-	tea_course kaikeE;
+	Tea_Course kaikeE;
 
 	
 
@@ -64,19 +66,19 @@ public class tea_CardEmploy extends Panel{
 
     */
 
-    public tea_CardEmploy(String id)
+    public Tea_CardEmploy(String id)
 
     {
 
     	//查询员工表
 
-    	selE = new tea_DatabaseCourseDesign(id);
+    	selE = new Tea_TeacherInformation(id);
 
 		
 
 		//添加员工表
 
-		addE = new tea_scoer(id);
+		addE = new Tea_StudentScore(id);
 
 		
 
@@ -84,7 +86,7 @@ public class tea_CardEmploy extends Panel{
 
     	
 
-    	kaikeE =new tea_course(id);
+    	kaikeE =new Tea_Course(id);
 
     	
 

@@ -14,7 +14,7 @@ import java.awt.event.*;
 
 
 
-public class tea_Manger extends JFrame implements TreeSelectionListener {
+public class Tea_Manger extends JFrame implements TreeSelectionListener {
 
 	JPanel jp;
 
@@ -28,19 +28,19 @@ public class tea_Manger extends JFrame implements TreeSelectionListener {
 
 			t2_2,t2_3;
 
-	tea_CardEmploy ae;
+	Tea_CardEmploy ae;
 
 	
 
 	public static void main(String[] args) {
 
-		tea_Manger stu_M = new tea_Manger("001");
+		Tea_Manger stu_M = new Tea_Manger("001");
 
 	}
 
 	
 
-	public tea_Manger(String id) {
+	public Tea_Manger(String id) {
 
 		// 给树的各个结点赋值
 
@@ -110,7 +110,7 @@ public class tea_Manger extends JFrame implements TreeSelectionListener {
 
 		// 实例化CardEmploy面板 并加到jsplitpane的边
 
-		ae = new tea_CardEmploy(id);
+		ae = new Tea_CardEmploy(id);
 
 
 

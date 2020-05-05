@@ -20,7 +20,7 @@ import java.sql.SQLException;
 
 
 
- class stu_login extends JFrame implements ActionListener  {
+ class Stu_Login extends JFrame implements ActionListener  {
 
 	// 定义组件
 
@@ -44,7 +44,7 @@ import java.sql.SQLException;
 
 	JButton logings = null;//登录
 
-	JButton register = null;//登录
+	//JButton register = null;//登录
 
 	public  void clear()  
 
@@ -60,7 +60,7 @@ import java.sql.SQLException;
 
 	// 构造函数
 
-	public stu_login() {
+	public Stu_Login() {
 
 		// 创建组件	
 
@@ -96,9 +96,9 @@ import java.sql.SQLException;
 
 		logings.setFont(new   java.awt.Font("Dialog",   1,   16));
 
-		register = new JButton("注册");
+		//register = new JButton("注册");
 
-		register.setFont(new   java.awt.Font("Dialog",   1,   16));
+		//register.setFont(new   java.awt.Font("Dialog",   1,   16));
 
 
 
@@ -156,7 +156,7 @@ import java.sql.SQLException;
 
 		jP4.add(logings);
 
-		jP4.add(register);
+		//jP4.add(register);
 
 	
 
@@ -269,7 +269,7 @@ import java.sql.SQLException;
 
 		        {   
 
-					new stu_Manger(login_id);
+					new Stu_Manger(login_id);
 
 					this.setVisible(false);
 

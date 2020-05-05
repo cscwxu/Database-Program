@@ -20,7 +20,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class tea_DatabaseCourseDesign extends Panel implements ActionListener {
+public class Tea_TeacherInformation extends Panel implements ActionListener {
 
 	String tea_id;
 
@@ -59,7 +59,7 @@ public class tea_DatabaseCourseDesign extends Panel implements ActionListener {
 
 	// 构造函数
 
-	public tea_DatabaseCourseDesign(String id) {
+	public Tea_TeacherInformation(String id) {
 
 		tea_id=id;
 		// 创建组件	

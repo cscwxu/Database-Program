@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class stu_CardEmploy extends Panel{
+public class Stu_CardEmploy extends Panel{
 
 	
 
@@ -12,15 +12,15 @@ public class stu_CardEmploy extends Panel{
 
     //查询表
 
-	stu_DatabaseCourseDesign selE;
+	Stu_Information selE;
 
 	//添加表
 
-	stu_scoer addE;
+	Stu_ShowCourse addE;
 
 	
 
-	stu_select teaE;
+	Stu_CourseSelect teaE;
 
 	
 
@@ -60,23 +60,23 @@ public class stu_CardEmploy extends Panel{
 
     */
 
-    public stu_CardEmploy(String id)
+    public Stu_CardEmploy(String id)
 
     {
 
     	//查询员工表
 
-    	selE = new stu_DatabaseCourseDesign(id);
+    	selE = new Stu_Information(id);
 
 		
 
 		//添加员工表
 
-		addE = new stu_scoer(id);
+		addE = new Stu_ShowCourse(id);
 
 		
 
-    	teaE = new stu_select(id);
+    	teaE = new Stu_CourseSelect(id);
 
     	
 

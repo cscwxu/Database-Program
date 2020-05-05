@@ -34,7 +34,7 @@ import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class course extends Panel implements ActionListener {
+public class Man_TeacherCourse extends Panel implements ActionListener {
 
 	// 定义组件
 
@@ -113,7 +113,7 @@ public class course extends Panel implements ActionListener {
 
 		// 构造函数
 
-		public course() {
+		public Man_TeacherCourse() {
 
 			// 创建组件	
 

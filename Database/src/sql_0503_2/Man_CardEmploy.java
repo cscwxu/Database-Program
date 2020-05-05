@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class CardEmploy extends Panel{
+public class Man_CardEmploy extends Panel{
 
 	
 
@@ -12,23 +12,23 @@ public class CardEmploy extends Panel{
 
     //查询表
 
-	DatabaseCourseDesign selE;
+	Man_StudentInformation selE;
 
 	//添加表
 
-	scoer addE;
+	Man_StudentScore addE;
 
 	
 
-	Teachercahar teaE;
+	Man_TeacherInformation teaE;
 
 	
 
-	course kaikeE;
+	Man_TeacherCourse kaikeE;
 
 	
 
-	couse_result  resE;
+	Man_StudentCourseSelect  resE;
 
 	
 
@@ -64,31 +64,31 @@ public class CardEmploy extends Panel{
 
     */
 
-    public CardEmploy()
+    public Man_CardEmploy()
 
     {
 
     	//查询员工表
 
-    	selE = new DatabaseCourseDesign();
+    	selE = new Man_StudentInformation();
 
 		
 
 		//添加员工表
 
-		addE = new scoer();
+		addE = new Man_StudentScore();
 
 		
 
-    	teaE = new Teachercahar();
+    	teaE = new Man_TeacherInformation();
 
     	
 
-    	kaikeE =new course();
+    	kaikeE =new Man_TeacherCourse();
 
     	
 
-    	resE  = new couse_result();
+    	resE  = new Man_StudentCourseSelect();
 
     	//修改员工信息
 

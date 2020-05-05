@@ -36,7 +36,7 @@ import java.io.IOException;
 
 
 
- class JWC_login extends JFrame  {
+ class Main extends JFrame  {
 
 	// 定义组件
 
@@ -56,7 +56,7 @@ import java.io.IOException;
 
 	// 构造函数
 
-	public JWC_login() {
+	public Main() {
 
 		
 
@@ -104,7 +104,7 @@ import java.io.IOException;
 
 			public void actionPerformed(ActionEvent e) {
 
-				new Login();
+				new Man_Login();
 
 				getcon.setVisible(false);
 
@@ -124,7 +124,7 @@ import java.io.IOException;
 
 			public void actionPerformed(ActionEvent e) {
 
-					new teacher_login();
+					new Teacher_Login();
 
 					getcon.setVisible(false);
 
@@ -144,7 +144,7 @@ import java.io.IOException;
 
 			public void actionPerformed(ActionEvent e) {
 
-					new stu_login();
+					new Stu_Login();
 
 					getcon.setVisible(false);
 
@@ -274,11 +274,11 @@ import java.io.IOException;
 
 
 
-	public static JWC_login getcon = null;
+	public static Main getcon = null;
 
 		public static void main(String[] args) {
 
-		getcon = new  JWC_login();
+		getcon = new  Main();
 
 		//JWC_login.setVisible(true);
 

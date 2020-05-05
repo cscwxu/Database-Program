@@ -30,7 +30,7 @@ public class Manager extends JFrame implements TreeSelectionListener {
 
 
 
-	CardEmploy ae;
+	Man_CardEmploy ae;
 
 
 
@@ -110,7 +110,7 @@ public class Manager extends JFrame implements TreeSelectionListener {
 
 		// 实例化CardEmploy面板 并加到jsplitpane的边
 
-		ae = new CardEmploy();
+		ae = new Man_CardEmploy();
 
 
 

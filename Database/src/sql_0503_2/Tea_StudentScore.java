@@ -25,7 +25,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class tea_scoer extends Panel implements ActionListener {
+public class Tea_StudentScore extends Panel implements ActionListener {
 
 	// 定义组件
 		String tea_id;
@@ -115,7 +115,7 @@ public class tea_scoer extends Panel implements ActionListener {
 
 		// 构造函数
 
-		public tea_scoer(String id) {
+		public Tea_StudentScore(String id) {
 
 			// 创建组件	
 			tea_id=id;

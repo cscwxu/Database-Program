@@ -25,7 +25,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class stu_select extends Panel implements ActionListener {
+public class Stu_CourseSelect extends Panel implements ActionListener {
 
 	// 定义组件
 		String stu_id;
@@ -116,7 +116,7 @@ public class stu_select extends Panel implements ActionListener {
 
 		// 构造函数
 
-		public stu_select(String id) {
+		public Stu_CourseSelect(String id) {
 
 			// 创建组件	
 			stu_id=id;
@@ -461,7 +461,7 @@ public class stu_select extends Panel implements ActionListener {
 
 	        // TODO Auto-generated method stub
 
-			couse_result getcon = new  couse_result();
+			Man_StudentCourseSelect getcon = new  Man_StudentCourseSelect();
 
 	    }
 

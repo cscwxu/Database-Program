@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
 import java.sql.*;
 
 
-class teacher_login extends JFrame implements ActionListener  {
+class Teacher_Login extends JFrame implements ActionListener  {
 
 	// 定义组件
 
@@ -41,7 +41,7 @@ class teacher_login extends JFrame implements ActionListener  {
 
 	JButton logings = null;//登录
 
-	JButton register = null;//登录
+	//JButton register = null;//登录
 
 	public  void clear()  
 
@@ -57,7 +57,7 @@ class teacher_login extends JFrame implements ActionListener  {
 
 	// 构造函数
 
-	public teacher_login() {
+	public Teacher_Login() {
 
 		// 创建组件	
 
@@ -93,9 +93,9 @@ class teacher_login extends JFrame implements ActionListener  {
 
 		logings.setFont(new   java.awt.Font("Dialog",   1,   16));
 
-		register = new JButton("注册");
+		//register = new JButton("注册");
 
-		register.setFont(new   java.awt.Font("Dialog",   1,   16));
+		//register.setFont(new   java.awt.Font("Dialog",   1,   16));
 
 
 
@@ -151,7 +151,7 @@ class teacher_login extends JFrame implements ActionListener  {
 
 		jP4.add(logings);
 
-		jP4.add(register);
+		//jP4.add(register);
 
 	
 
@@ -263,7 +263,7 @@ class teacher_login extends JFrame implements ActionListener  {
 		        {   
 
 					System.out.print("教师登录成功，切换页面");
-					new tea_Manger(login_id);
+					new Tea_Manger(login_id);
 
 					this.setVisible(false);;
 

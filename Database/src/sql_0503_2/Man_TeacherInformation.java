@@ -34,7 +34,7 @@ import java.util.Vector;
 
 
 
-public class Teachercahar extends Panel implements ActionListener {
+public class Man_TeacherInformation extends Panel implements ActionListener {
 
 	// 定义组件
 
@@ -108,7 +108,7 @@ public class Teachercahar extends Panel implements ActionListener {
 
 	// 构造函数
 
-	public Teachercahar() {
+	public Man_TeacherInformation() {
 
 		// 创建组件	
 

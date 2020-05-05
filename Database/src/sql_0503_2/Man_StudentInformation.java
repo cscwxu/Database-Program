@@ -34,7 +34,7 @@ import java.util.Vector;
 
 
 
-public class DatabaseCourseDesign extends Panel implements ActionListener {
+public class Man_StudentInformation extends Panel implements ActionListener {
 
 	// 定义组件
 
@@ -120,7 +120,7 @@ public class DatabaseCourseDesign extends Panel implements ActionListener {
 
 	// 构造函数
 
-	public DatabaseCourseDesign() {
+	public Man_StudentInformation() {
 
 		// 创建组件	
 
@@ -441,7 +441,7 @@ public class DatabaseCourseDesign extends Panel implements ActionListener {
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
-
+		
 		if(e.getActionCommand().equals("查询学生信息")  
 
 				&& !jTFQueryField.getText().isEmpty()){

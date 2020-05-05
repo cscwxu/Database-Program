@@ -34,7 +34,7 @@ import java.util.Vector;
 
 
 
-public class scoer extends Panel implements ActionListener {
+public class Man_StudentScore extends Panel implements ActionListener {
 
 	// 定义组件
 
@@ -120,7 +120,7 @@ public class scoer extends Panel implements ActionListener {
 
 	// 构造函数
 
-	public scoer() {
+	public Man_StudentScore() {
 
 		// 创建组件	
 
@@ -428,7 +428,31 @@ public class scoer extends Panel implements ActionListener {
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
+		jCBSelectQueryField.addItemListener(new ItemListener() {//下拉框事件监听  
 
+            public void itemStateChanged(ItemEvent event) { 
+
+                switch (event.getStateChange()) {  
+
+                case ItemEvent.SELECTED:  
+
+                	SelectQueryFieldStr = (String) event.getItem();  
+
+                    System.out.println("选中：" + SelectQueryFieldStr);  
+
+                    break;  
+
+                case ItemEvent.DESELECTED:  
+
+                    System.out.println("取消选中：" + event.getItem());  
+
+                    break;  
+
+                }  
+
+            }  
+
+        });
 		if(e.getActionCommand().equals("查询")  
 
 				&& !jTFQueryField.getText().isEmpty()){

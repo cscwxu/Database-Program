@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 
 
- class Login extends JFrame implements ActionListener {
+ class Man_Login extends JFrame implements ActionListener {
 
 	// 定义组件
 
@@ -42,7 +42,7 @@ import java.sql.SQLException;
 
 	JButton logings = null;//登录
 
-	JButton register = null;//登录
+	//JButton register = null;//登录
 
 	public  void clear()  
 
@@ -58,7 +58,7 @@ import java.sql.SQLException;
 
 	// 构造函数
 
-	public Login() {
+	public Man_Login() {
 
 		// 创建组件	
 
@@ -94,9 +94,9 @@ import java.sql.SQLException;
 
 		logings.setFont(new   java.awt.Font("Dialog",   1,   16));
 
-		register = new JButton("注册");
+		//register = new JButton("注册");
 
-		register.setFont(new   java.awt.Font("Dialog",   1,   16));
+		//register.setFont(new   java.awt.Font("Dialog",   1,   16));
 
 
 
@@ -156,7 +156,7 @@ import java.sql.SQLException;
 
 		jP4.add(logings);
 
-		jP4.add(register);
+		//jP4.add(register);
 
 	
 

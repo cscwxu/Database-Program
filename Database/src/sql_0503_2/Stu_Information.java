@@ -25,7 +25,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class stu_DatabaseCourseDesign extends Panel implements ActionListener {
+public class Stu_Information extends Panel implements ActionListener {
 		String stu_id;
 
 		// 定义组件
@@ -63,7 +63,7 @@ public class stu_DatabaseCourseDesign extends Panel implements ActionListener {
 
 		// 构造函数
 
-		public stu_DatabaseCourseDesign(String id) {
+		public Stu_Information(String id) {
 
 			stu_id=id;
 			// 创建组件	

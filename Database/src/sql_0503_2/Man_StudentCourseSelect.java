@@ -34,7 +34,7 @@ import java.util.Vector;
 
 
 
-public class couse_result extends Panel implements ActionListener {
+public class Man_StudentCourseSelect extends Panel implements ActionListener {
 
 	// 定义组件
 
@@ -124,7 +124,7 @@ public class couse_result extends Panel implements ActionListener {
 
 	// 构造函数
 
-	public couse_result() {
+	public Man_StudentCourseSelect() {
 
 		// 创建组件	
 
@@ -221,6 +221,7 @@ public class couse_result extends Panel implements ActionListener {
 		jCBSelectQueryField.addItemListener(new ItemListener() {//下拉框事件监听  
 
             public void itemStateChanged(ItemEvent event) {  
+            	System.out.println("点击下拉框");
 
                 switch (event.getStateChange()) {  
 
@@ -491,7 +492,8 @@ public class couse_result extends Panel implements ActionListener {
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
-
+		
+		
 		if(e.getActionCommand().equals("查询选课结果")  
 
 			&& !jTFQueryField.getText().isEmpty()){
@@ -567,7 +569,7 @@ public class couse_result extends Panel implements ActionListener {
 	}
 
 	
-
+/*
 	public static void main(String[] args) {
 
         // TODO Auto-generated method stub
@@ -575,7 +577,7 @@ public class couse_result extends Panel implements ActionListener {
 		couse_result getcon = new  couse_result();
 
     }
-
+*/
 	
 
 	public void queryProcess(String sQueryField)

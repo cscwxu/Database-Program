@@ -34,7 +34,7 @@ import java.util.Vector;
 
 
 
-public class tea_course extends Panel implements ActionListener {
+public class Tea_Course extends Panel implements ActionListener {
 
 	// 定义组件
 	String tea_id;
@@ -113,7 +113,7 @@ public class tea_course extends Panel implements ActionListener {
 
 	// 构造函数
 
-	public tea_course(String id) {
+	public Tea_Course(String id) {
 
 		// 创建组件	
 		tea_id=id;

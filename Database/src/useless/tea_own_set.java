@@ -1,10 +1,10 @@
-package sql_0503_2;
+package useless;
 
 import javax.swing.*;
 
 import javax.swing.table.DefaultTableModel;
 
-
+import sql_0503_2.DbProcess;
 
 import java.awt.*;
 

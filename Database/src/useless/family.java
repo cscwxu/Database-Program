@@ -1,4 +1,4 @@
-package sql_0503_2;
+package useless;
 
 import java.awt.BorderLayout;
 
@@ -15,6 +15,10 @@ import java.awt.event.ItemEvent;
 
 
 import javax.swing.*;
+
+import sql_0503_2.Man_StudentInformation;
+import sql_0503_2.Man_TeacherInformation;
+import sql_0503_2.Man_StudentScore;
 
 
 
@@ -106,7 +110,7 @@ public class family extends  JFrame{
 
 			public void actionPerformed(ActionEvent e) {
 
-				new DatabaseCourseDesign();
+				new Man_StudentInformation();
 
 				
 
@@ -128,7 +132,7 @@ public class family extends  JFrame{
 
 			public void actionPerformed(ActionEvent e) {
 
-				new Teachercahar();
+				new Man_TeacherInformation();
 
 				
 
@@ -150,7 +154,7 @@ public class family extends  JFrame{
 
 			public void actionPerformed(ActionEvent e) {
 
-				new scoer();
+				new Man_StudentScore();
 
 				
 

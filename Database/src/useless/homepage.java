@@ -1,10 +1,10 @@
-package sql_0503_2;
+package useless;
 
 import javax.swing.*;
 
 import javax.swing.border.Border;
 
-
+import sql_0503_2.Man_StudentInformation;
 
 import java.awt.*;
 
@@ -120,7 +120,7 @@ public class homepage extends JFrame implements ActionListener{
 
 		{
 
-			cardLayout.show(new DatabaseCourseDesign(), "学生信息");
+			cardLayout.show(new Man_StudentInformation(), "学生信息");
 
 		}
 

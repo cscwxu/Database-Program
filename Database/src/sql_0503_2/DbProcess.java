@@ -26,7 +26,7 @@ public class DbProcess{
 
 	String urlMySql = "jdbc:mysql://localhost:3306/biglab?user="
 
-			+userMySql+"&password="+passwordMySql + "&useUnicode=true&characterEncoding=gbk&serverTimezone=UTC";
+			+userMySql+"&password="+passwordMySql + "&useUnicode=true&characterEncoding=gbk&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 
 	public DbProcess() {
 
@@ -56,7 +56,7 @@ public class DbProcess{
 
 		try{
 			//数据库连结串
-			String url = "jdbc:mysql://localhost:3306/biglab?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
+			String url = "jdbc:mysql://localhost:3306/biglab?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 		    String username = "root";
 		    String password = "qwe6555013";
 		    //创建连结

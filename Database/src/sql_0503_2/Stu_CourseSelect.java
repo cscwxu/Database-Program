@@ -79,6 +79,8 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 		JButton jBQueryAll = null;//查询所有记录
 
 		JButton jBInsert = null;//插入
+		
+		JButton jBCancle=null;
 
 		//JButton jBUpdate = null;//更新
 
@@ -113,7 +115,22 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 		String SelectQueryFieldStr = "学号";
 
 		
+		private void SetEnable(boolean flag) {
+			if(flag) {
+				
+				jTFcname.setText("");
+				
+				jBInsert.setEnabled(!flag);
+								
+				jBCancle.setEnabled(!flag);
+			}
+			else {
 
+				jBInsert.setEnabled(!flag);
+				
+				jBCancle.setEnabled(!flag);
+			}
+		}
 		// 构造函数
 
 		public Stu_CourseSelect(String id) {
@@ -156,6 +173,7 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 			//jTFcno = new JTextField(14);//性别
 
 			jTFcname = new JTextField(14);//年龄
+			jTFcname.setEditable(false);
 
 			//jTFcoom = new JTextField(14);//专业
 
@@ -167,11 +185,13 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 
 			
 
-			jBQuery = new JButton("查询选课结果");
+			jBQuery = new JButton("查询");
 
 			jBQueryAll = new JButton("查询所有记录");
 
 			jBInsert = new JButton("确认选课");
+			
+			jBCancle =new JButton("取消");
 
 			//jBUpdate = new JButton("修改选课");
 
@@ -186,15 +206,17 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 			jBQueryAll.addActionListener(this);
 
 			jBInsert.addActionListener(this);
+			
+			jBCancle.addActionListener(this);
 
 			//jBUpdate.addActionListener(this);
 
 			//jBDeleteCurrentRecord.addActionListener(this);
 
 			//jDeleteAllRecords.addActionListener(this);
-
+			SetEnable(true);
 			
-
+			
 			jCBSelectQueryField = new JComboBox<String>();//查询字段
 
 			jCBSelectQueryField.addItem("课程号");
@@ -293,6 +315,8 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 					v = (Vector) studentVector.get(row);
 					jTFcname.setText((String) v.get(1));
 					course_id=(String) v.get(0);
+					
+					SetEnable(false);
 				}
 
 			});
@@ -368,7 +392,7 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 
 			jP7.add(jBInsert);
 
-
+			jP7.add(jBCancle);
 			jP7.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 			jP7.setPreferredSize(new Dimension(20,20));
@@ -390,7 +414,7 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 			jPBottom.add(jP5);
 
 
-
+			
 			jPBottom.add(jP7);
 
 			
@@ -427,7 +451,7 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
-			if(e.getActionCommand().equals("查询选课结果")  
+			if(e.getActionCommand().equals("查询")  
 
 				&& !jTFQueryField.getText().isEmpty()){
 
@@ -450,7 +474,11 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 				System.out.println("actionPerformed(). 确认选课");
 
 				insertProcess();
+				
+				SetEnable(true);
 
+			}else if(e.getActionCommand().equals("取消")){
+				SetEnable(true);
 			}
 
 		}
@@ -639,13 +667,16 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 			String sql="insert into sc(sn,cn) values('"+stu_id+"','"+course_id+"');";
 
 			System.out.println("insertProcess(). sql = " + sql);
+			int flag=1;
 
 			try{
 
 				if (dbProcess.executeUpdate(sql) < 1) {
 
 					System.out.println("insertProcess(). insert database failed.");
-
+					JOptionPane.showMessageDialog(null,
+							"选课 错误","错误",JOptionPane.ERROR_MESSAGE);
+					flag=0;
 				}
 
 			}catch(Exception e){
@@ -657,7 +688,9 @@ public class Stu_CourseSelect extends Panel implements ActionListener {
 					"数据操作错误","错误",JOptionPane.ERROR_MESSAGE);
 
 			}
-
+			if(flag==1) 
+			JOptionPane.showMessageDialog(null,
+				"选课成功","错误",JOptionPane.INFORMATION_MESSAGE);
 			queryAllProcess();
 			jTFcname.setText("");
 		}

@@ -81,7 +81,7 @@ public class Man_TeacherCourse extends Panel implements ActionListener {
 
 		JButton jBDeleteAllRecords = null;//删除所有记录
 
-		
+		JButton jBCancle=null;
 
 		//JComboBox jCBSelectQueryField = null;
 
@@ -110,7 +110,38 @@ public class Man_TeacherCourse extends Panel implements ActionListener {
 		String SelectQueryFieldStr = "教师";
 
 		
+		private void SetEnable(boolean flag) {
+			if(flag) {
+				jTCn.setText("");
+				
+				jTteacher.setText("");
+				
+				jTCname.setText("");
+				
+				jTwe_day.setText("");
+				
+				jTcredit.setText("");
 
+				jBInsert.setEnabled(flag);
+				
+				jBDeleteCurrentRecord.setEnabled(!flag);
+				
+				jBUpdate.setEnabled(!flag);
+				
+				jBCancle.setEnabled(!flag);
+			}
+			else {
+
+				jBInsert.setEnabled(flag);
+				
+				jBDeleteCurrentRecord.setEnabled(!flag);
+				
+				
+				jBUpdate.setEnabled(!flag);
+				
+				jBCancle.setEnabled(!flag);
+			}
+		}
 		// 构造函数
 
 		public Man_TeacherCourse() {
@@ -162,6 +193,8 @@ public class Man_TeacherCourse extends Panel implements ActionListener {
 			jBDeleteCurrentRecord = new JButton("删除当前记录");
 
 			jBDeleteAllRecords = new JButton("删除所有记录");
+			
+			jBCancle=new JButton("取消");
 
 			// 设置监听
 
@@ -177,7 +210,9 @@ public class Man_TeacherCourse extends Panel implements ActionListener {
 
 			jBDeleteAllRecords.addActionListener(this);
 
+			jBCancle.addActionListener(this);
 			
+			SetEnable(true);
 
 			jCBSelectQueryField = new JComboBox<String>();//查询字段
 
@@ -286,7 +321,7 @@ public class Man_TeacherCourse extends Panel implements ActionListener {
 
 					jTcredit.setText((String) v.get(5));
 					
-					
+					SetEnable(false);
 					
 
 				}
@@ -378,6 +413,7 @@ public class Man_TeacherCourse extends Panel implements ActionListener {
 			jP6.add(jBDeleteCurrentRecord);
 
 			jP6.add(jBDeleteAllRecords);
+			jP6.add(jBCancle);
 
 			jP6.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -488,12 +524,16 @@ public class Man_TeacherCourse extends Panel implements ActionListener {
 					System.out.println("actionPerformed(). 更新");
 
 					updateProcess();
+					
+					SetEnable(true);
 
 				}else if(e.getActionCommand().equals("删除当前记录")){
 
 					System.out.println("actionPerformed(). 删除当前记录");
 
 					deleteCurrentRecordProcess();
+					
+					SetEnable(true);
 
 				}else if(e.getActionCommand().equals("删除所有记录")){
 
@@ -805,6 +845,28 @@ public class Man_TeacherCourse extends Panel implements ActionListener {
 			
 
 			// 建立删除条件
+			
+			String rsql="delete from sc where Cn= '"+Cn+"';";
+			
+			System.out.println("delete reference . rsql = " + rsql);
+			
+			try{
+
+				if (dbProcess.executeUpdate(rsql) < 1) {
+
+					System.out.println("deleteCurrentRecordProcess(). delete database failed.");
+
+				}
+
+			}catch(Exception e){
+
+				System.out.println("e = " + e);
+
+				JOptionPane.showMessageDialog(null,
+
+					"数据操作错误","错误",JOptionPane.ERROR_MESSAGE);
+
+			}
 
 			String sql = "delete from course where Cn= '" + Cn + "';";
 
@@ -839,7 +901,26 @@ public class Man_TeacherCourse extends Panel implements ActionListener {
 		{
 
 			// 建立删除条件
+			String rsql="delete from sc";
+			
+			try{
 
+				if (dbProcess.executeUpdate(rsql) < 1) {
+
+					System.out.println("deleteCurrentRecordProcess(). delete database failed.");
+
+				}
+
+			}catch(Exception e){
+
+				System.out.println("e = " + e);
+
+				JOptionPane.showMessageDialog(null,
+
+					"数据操作错误","错误",JOptionPane.ERROR_MESSAGE);
+
+			}
+			
 			String sql = "delete from course;";
 
 			System.out.println("deleteAllRecordsProcess(). sql = " + sql);

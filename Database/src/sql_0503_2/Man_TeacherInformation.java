@@ -75,7 +75,8 @@ public class Man_TeacherInformation extends Panel implements ActionListener {
 	JButton jBDeleteCurrentRecord = null;//删除当前记录
 
 	JButton jBDeleteAllRecords = null;//删除所有记录
-
+	
+	JButton jBCancle=null;
 	
 
 	//JComboBox jCBSelectQueryField = null;
@@ -105,6 +106,37 @@ public class Man_TeacherInformation extends Panel implements ActionListener {
 	String SelectQueryFieldStr = "编号";
 
 	
+	private void SetEnable(boolean flag) {
+		if(flag) {
+			
+			jTFSNo.setText("");
+			
+			jTFSDn.setText("");
+			
+			jTFSName.setText("");
+			
+			jTFsalary.setText("");
+
+			jBInsert.setEnabled(flag);
+			
+			jBDeleteCurrentRecord.setEnabled(!flag);
+			
+			jBUpdate.setEnabled(!flag);
+			
+			jBCancle.setEnabled(!flag);
+		}
+		else {
+
+			jBInsert.setEnabled(flag);
+			
+			jBDeleteCurrentRecord.setEnabled(!flag);
+			
+			
+			jBUpdate.setEnabled(!flag);
+			
+			jBCancle.setEnabled(!flag);
+		}
+	}
 
 	// 构造函数
 
@@ -132,7 +164,8 @@ public class Man_TeacherInformation extends Panel implements ActionListener {
 		jTFSDn = new JTextField(10);//编号
 		jTFSName = new JTextField(10);//姓名
 		jTFsalary = new JTextField(10);//姓名
-
+		
+		
 		//jTclass = new JTextField(10);//授课专业
 
 		
@@ -148,7 +181,8 @@ public class Man_TeacherInformation extends Panel implements ActionListener {
 		jBDeleteCurrentRecord = new JButton("删除当前记录");
 
 		jBDeleteAllRecords = new JButton("删除所有记录");
-
+		
+		jBCancle=new JButton("取消");
 		// 设置监听
 
 		jBQuery.addActionListener(this);
@@ -163,7 +197,9 @@ public class Man_TeacherInformation extends Panel implements ActionListener {
 
 		jBDeleteAllRecords.addActionListener(this);
 
+		jBCancle.addActionListener(this);
 		
+		SetEnable(true);
 
 		jCBSelectQueryField = new JComboBox<String>();//查询字段
 
@@ -262,6 +298,7 @@ public class Man_TeacherInformation extends Panel implements ActionListener {
 				jTFSName.setText((String) v.get(1));// 姓名
 				jTFsalary.setText((String) v.get(3));// 学号
 				
+				SetEnable(false);
 				//jTclass.setText((String) v.get(2));// 班级
 
 			}
@@ -345,6 +382,7 @@ public class Man_TeacherInformation extends Panel implements ActionListener {
 		jP5.add(jBDeleteCurrentRecord);
 
 		jP5.add(jBDeleteAllRecords);
+		jP5.add(jBCancle);
 
 		jP5.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -439,12 +477,16 @@ public class Man_TeacherInformation extends Panel implements ActionListener {
 				System.out.println("actionPerformed(). 更新");
 
 				updateProcess();
+				
+				SetEnable(true);
 
 			}else if(e.getActionCommand().equals("删除当前记录")){
 
 				System.out.println("actionPerformed(). 删除当前记录");
 
 				deleteCurrentRecordProcess();
+				
+				SetEnable(true);
 
 			}else if(e.getActionCommand().equals("删除所有记录")){
 
@@ -452,6 +494,8 @@ public class Man_TeacherInformation extends Panel implements ActionListener {
 
 				deleteAllRecordsProcess();
 
+			}else if(e.getActionCommand().equals("取消")){
+				SetEnable(true);
 			}
 
 		}

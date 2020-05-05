@@ -38,7 +38,7 @@ import java.sql.SQLException;
 
 	JTextField jTFuser = null;//姓名
 
-	JTextField jTFpossword = null;//性别
+	JPasswordField jTFpossword = null;//性别
 
 	
 
@@ -82,14 +82,13 @@ import java.sql.SQLException;
 
 		
 
-		jTFuser = new JTextField(10);//查询字段
+		jTFuser = new JTextField(15);//查询字段
 
-		jTFpossword = new JTextField(10);//学号
+		jTFpossword = new JPasswordField(15);//学号
 
 		jTFuser.setFont(new   java.awt.Font("Dialog",   0,   19));
 
 		jTFpossword.setFont(new   java.awt.Font("Dialog",   0,   19));
-
 		
 
 		logings = new JButton("登录");

@@ -88,7 +88,7 @@ public class Man_StudentInformation extends Panel implements ActionListener {
 
 	JButton jBDeleteAllRecords = null;//删除所有记录
 
-	
+	JButton jBCancle=null;  
 
 	//JComboBox jCBSelectQueryField = null;
 
@@ -117,7 +117,39 @@ public class Man_StudentInformation extends Panel implements ActionListener {
 	String SelectQueryFieldStr = "学号";
 
 	
-
+	private void SetEnable(boolean flag) {
+		if(flag) {
+			jTFSNo.setText("");
+			
+			jTFSName.setText("");
+			
+			jTclass.setText("");
+			
+			jTDn.setText("");
+			
+			jTSsex.setText("");
+			
+			jTSage.setText("");
+			
+			jBInsert.setEnabled(true);
+			
+			jBDeleteCurrentRecord.setEnabled(false);
+			
+			jBUpdate.setEnabled(false);
+			
+			jBCancle.setEnabled(false);
+		}
+		else {
+			jBInsert.setEnabled(false);
+			
+			jBDeleteCurrentRecord.setEnabled(true);
+			
+			
+			jBUpdate.setEnabled(true);
+			
+			jBCancle.setEnabled(true);
+		}
+	}
 	// 构造函数
 
 	public Man_StudentInformation() {
@@ -171,6 +203,8 @@ public class Man_StudentInformation extends Panel implements ActionListener {
 		jBDeleteCurrentRecord = new JButton("删除当前记录");
 
 		jBDeleteAllRecords = new JButton("删除所有记录");
+		
+		jBCancle=new JButton("取消");
 
 		// 设置监听
 
@@ -186,7 +220,9 @@ public class Man_StudentInformation extends Panel implements ActionListener {
 
 		jBDeleteAllRecords.addActionListener(this);
 
+		jBCancle.addActionListener(this);
 		
+		SetEnable(true);
 
 		jCBSelectQueryField = new JComboBox<String>();//查询字段
 
@@ -301,6 +337,8 @@ public class Man_StudentInformation extends Panel implements ActionListener {
 				jTSsex.setText((String) v.get(4));//性别
 
 				jTSage.setText((String) v.get(5));//年龄
+				
+				SetEnable(false);
 
 			}
 
@@ -385,6 +423,8 @@ public class Man_StudentInformation extends Panel implements ActionListener {
 		jP5.add(jBDeleteCurrentRecord);
 
 		jP5.add(jBDeleteAllRecords);
+		
+		jP5.add(jBCancle);
 
 		jP5.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -489,18 +529,21 @@ public class Man_StudentInformation extends Panel implements ActionListener {
 				System.out.println("actionPerformed(). 修改学生信息");
 
 				updateProcess();
+				
+				SetEnable(true);
 
 			}else if(e.getActionCommand().equals("删除当前记录")){
 
 				System.out.println("actionPerformed(). 删除当前记录");
 
 				deleteCurrentRecordProcess();
+				SetEnable(true);
 
-			}else if(e.getActionCommand().equals("删除所有记录")){
+			}else if(e.getActionCommand().equals("取消")){
 
-				System.out.println("actionPerformed(). 删除所有记录");
+				System.out.println("actionPerformed(). 取消");
 
-				deleteAllRecordsProcess();
+				SetEnable(true);
 
 			}
 
@@ -801,23 +844,40 @@ public class Man_StudentInformation extends Panel implements ActionListener {
 		}
 
 		queryAllProcess();
-
 	}
 
 
 
 	public void deleteCurrentRecordProcess()
-
 	{
-
 		String sNo = jTFSNo.getText().trim();
-
+		//删除学生信息，首先要删除所有依赖关系
+		//1.删除该同学选修的课程
 		
-
-		// 建立删除条件
-
 		String sql = "delete from student where Sn = '" + sNo + "';";
 
+		String rsql="delete from sc where Sn= '"+sNo+"';";
+		
+		System.out.println("delete reference Information. sql = " + sql);
+		
+		try{
+
+			if (dbProcess.executeUpdate(rsql) < 1) {
+
+				System.out.println("deleteCurrentRecordProcess(). delete database failed.");
+
+			}
+
+		}catch(Exception e){
+
+			System.out.println("e = " + e);
+
+			JOptionPane.showMessageDialog(null,
+
+				"删除数据依赖错误","错误",JOptionPane.ERROR_MESSAGE);
+
+		}
+		
 		System.out.println("deleteCurrentRecordProcess(). sql = " + sql);
 
 		try{
@@ -849,8 +909,30 @@ public class Man_StudentInformation extends Panel implements ActionListener {
 	{
 
 		// 建立删除条件
-
+		
 		String sql = "delete from student;";
+		
+		String rsql="delete from sc;";
+		
+		System.out.println("delete reference Information. sql = " + sql);
+		
+		try{
+
+			if (dbProcess.executeUpdate(rsql) < 1) {
+
+				System.out.println("deleteCurrentRecordProcess(). delete database failed.");
+
+			}
+
+		}catch(Exception e){
+
+			System.out.println("e = " + e);
+
+			JOptionPane.showMessageDialog(null,
+
+				"删除数据依赖错误","错误",JOptionPane.ERROR_MESSAGE);
+
+		}
 
 		System.out.println("deleteAllRecordsProcess(). sql = " + sql);
 

@@ -257,7 +257,7 @@ public class Tea_TeacherInformation extends Panel implements ActionListener {
 
 			// 建立查询条件
 
-			String sql = "select * from Teacher where Tn="+tea_id+";";
+			String sql = "select * from Teacher where Tn='"+tea_id+"';";
 
 		
 			System.out.println("queryProcess(). sql = " + sql);

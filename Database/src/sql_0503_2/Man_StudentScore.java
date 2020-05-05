@@ -88,7 +88,7 @@ public class Man_StudentScore extends Panel implements ActionListener {
 
 	JButton jBDeleteAllRecords = null;//删除所有记录
 
-	
+	JButton jBCancle=null;
 
 	//JComboBox jCBSelectQueryField = null;
 
@@ -117,7 +117,41 @@ public class Man_StudentScore extends Panel implements ActionListener {
 	String SelectQueryFieldStr = "课程名";
 
 	
+	private void SetEnable(boolean flag) {
+		if(flag) {
+			jTFSNo.setEditable(flag);
+			
+			jTFcourse.setEditable(flag);
+			
+			jTFSNo.setText("");
+			
+			jTFcourse.setText("");
+			
+			jTFscoer.setText("");
 
+			jBInsert.setEnabled(flag);
+			
+			jBDeleteCurrentRecord.setEnabled(!flag);
+			
+			jBUpdate.setEnabled(!flag);
+			
+			jBCancle.setEnabled(!flag);
+		}
+		else {
+			jTFSNo.setEditable(flag);
+			
+			jTFcourse.setEditable(flag);
+
+			jBInsert.setEnabled(flag);
+			
+			jBDeleteCurrentRecord.setEnabled(!flag);
+			
+			
+			jBUpdate.setEnabled(!flag);
+			
+			jBCancle.setEnabled(!flag);
+		}
+	}
 	// 构造函数
 
 	public Man_StudentScore() {
@@ -167,6 +201,8 @@ public class Man_StudentScore extends Panel implements ActionListener {
 		jBDeleteCurrentRecord = new JButton("删除当前记录");
 
 		jBDeleteAllRecords = new JButton("删除所有记录");
+		
+		jBCancle=new JButton("取消");
 
 		// 设置监听
 
@@ -182,8 +218,10 @@ public class Man_StudentScore extends Panel implements ActionListener {
 
 		jBDeleteAllRecords.addActionListener(this);
 
+		jBCancle.addActionListener(this);
 		
-
+		SetEnable(true);
+		
 		jCBSelectQueryField = new JComboBox<String>();//查询字段
 		
 		jCBSelectQueryField.addItem("课程名");
@@ -282,18 +320,13 @@ public class Man_StudentScore extends Panel implements ActionListener {
 
 				v = (Vector) studentVector.get(row);
 
-
-
 				jTFSNo.setText((String) v.get(0));// 学号
 
-				//jTFSName.setText((String) v.get(1));// 姓名
-
 				jTFcourse.setText((String) v.get(2));// 课程号
-				
-				//jTFcourseName.setText((String) v.get(3));// 课程名
 
 				jTFscoer.setText((String) v.get(4));// 成绩号
-
+				
+				SetEnable(false);
 			}
 
 		});
@@ -376,6 +409,8 @@ public class Man_StudentScore extends Panel implements ActionListener {
 		jP5.add(jBDeleteCurrentRecord);
 
 		jP5.add(jBDeleteAllRecords);
+		
+		jP5.add(jBCancle);
 
 		jP5.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -428,31 +463,7 @@ public class Man_StudentScore extends Panel implements ActionListener {
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
-		jCBSelectQueryField.addItemListener(new ItemListener() {//下拉框事件监听  
-
-            public void itemStateChanged(ItemEvent event) { 
-
-                switch (event.getStateChange()) {  
-
-                case ItemEvent.SELECTED:  
-
-                	SelectQueryFieldStr = (String) event.getItem();  
-
-                    System.out.println("选中：" + SelectQueryFieldStr);  
-
-                    break;  
-
-                case ItemEvent.DESELECTED:  
-
-                    System.out.println("取消选中：" + event.getItem());  
-
-                    break;  
-
-                }  
-
-            }  
-
-        });
+		
 		if(e.getActionCommand().equals("查询")  
 
 				&& !jTFQueryField.getText().isEmpty()){
@@ -502,12 +513,16 @@ public class Man_StudentScore extends Panel implements ActionListener {
 				System.out.println("actionPerformed(). 更新");
 
 				updateProcess();
+				
+				SetEnable(true);
 
 			}else if(e.getActionCommand().equals("删除当前记录")){
 
 				System.out.println("actionPerformed(). 删除当前记录");
 
 				deleteCurrentRecordProcess();
+				
+				SetEnable(true);
 
 			}else if(e.getActionCommand().equals("删除所有记录")){
 
@@ -515,6 +530,8 @@ public class Man_StudentScore extends Panel implements ActionListener {
 
 				deleteAllRecordsProcess();
 
+			}else if(e.getActionCommand().equals("取消")){
+				SetEnable(true);
 			}
 
 		}
@@ -797,7 +814,8 @@ public class Man_StudentScore extends Panel implements ActionListener {
 		}
 
 		queryAllProcess();
-
+		
+		
 	}
 
 
@@ -808,11 +826,11 @@ public class Man_StudentScore extends Panel implements ActionListener {
 
 		String sNo = jTFSNo.getText().trim();
 
-		
+		String cn= jTFcourse.getText().trim();
 
 		// 建立删除条件
 
-		String sql = "delete from sc where  Sn= '" + sNo + "';";
+		String sql = "delete from sc where  Sn= '" + sNo + "'AND Cn='"+cn+"';";
 
 		System.out.println("deleteCurrentRecordProcess(). sql = " + sql);
 

@@ -88,13 +88,13 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 
 	JButton jBInsert = null;//插入
 
-	JButton jBUpdate = null;//更新
+	//JButton jBUpdate = null;//更新
 
 	JButton jBDeleteCurrentRecord = null;//删除当前记录
 
 	JButton jBDeleteAllRecords = null;//删除所有记录
 
-	
+	JButton jBCancle=null;
 
 	//JComboBox jCBSelectQueryField = null;
 
@@ -121,7 +121,72 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 	String SelectQueryFieldStr = "学号";
 
 	
-
+	private void SetEnable(boolean flag) {
+		if(flag) {
+			jTFsno.setEditable(true);
+			
+			jTFcno.setEditable(true);
+			
+			jTFsname.setEditable(false);
+			
+			jTFcname.setEditable(false);
+			
+			jTFcoom.setEditable(false);
+			
+			jTFcji.setEditable(false);
+			
+			jTFtea.setEditable(false);
+			
+			jBInsert.setEnabled(false);
+			jTFsno.setText("");
+			
+			jTFsname.setText("");
+			
+			jTFcno.setText("");
+			
+			jTFcname.setText("");
+			
+			jTFcoom.setText("");
+			
+			jTFcji.setText("");
+			
+			jTFtea.setText("");
+			
+			jBInsert.setEnabled(true);
+			
+			jBDeleteCurrentRecord.setEnabled(false);
+			
+			
+			//jBUpdate.setEnabled(false);
+			
+			jBCancle.setEnabled(false);
+		}
+		else {
+			jTFsno.setEditable(false);
+			
+			jTFcno.setEditable(false);
+			
+			jTFsname.setEditable(false);
+			
+			jTFcname.setEditable(false);
+			
+			jTFcoom.setEditable(false);
+			
+			jTFcji.setEditable(false);
+			
+			jTFtea.setEditable(false);
+			
+			jBInsert.setEnabled(false);
+			
+			jBDeleteCurrentRecord.setEnabled(true);
+			
+			
+			//jBUpdate.setEnabled(true);
+			
+			jBCancle.setEnabled(true);
+		}
+	}
+	
 	// 构造函数
 
 	public Man_StudentCourseSelect() {
@@ -180,11 +245,13 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 
 		jBInsert = new JButton("插入选课");
 
-		jBUpdate = new JButton("修改选课");
+		//jBUpdate = new JButton("修改选课");
 
-		jBDeleteCurrentRecord = new JButton("删除当前记录");
+		jBDeleteCurrentRecord = new JButton("取消选课");
 
 		jBDeleteAllRecords = new JButton("删除所有记录");
+		
+		jBCancle=new JButton("取消");
 
 		// 设置监听
 
@@ -194,13 +261,15 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 
 		jBInsert.addActionListener(this);
 
-		jBUpdate.addActionListener(this);
+		//jBUpdate.addActionListener(this);
 
 		jBDeleteCurrentRecord.addActionListener(this);
 
 		jBDeleteAllRecords.addActionListener(this);
 
+		jBCancle.addActionListener(this);
 		
+		SetEnable(true);
 
 		jCBSelectQueryField = new JComboBox<String>();//查询字段
 
@@ -325,6 +394,7 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 
 				jTFtea.setText((String) v.get(6));// 住址
 
+				SetEnable(false);
 			}
 
 		});
@@ -370,6 +440,7 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 		jP3.add(jBQuery);
 
 		jP3.add(jBQueryAll);
+		
 
 		jP3.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -429,11 +500,13 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 
 		jP7.add(jBInsert);
 
-		jP7.add(jBUpdate);
+		//jP7.add(jBUpdate);
 
 		jP7.add(jBDeleteCurrentRecord);
 
 		jP7.add(jBDeleteAllRecords);
+		
+		jP7.add(jBCancle);
 
 		jP7.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -494,9 +567,7 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		
-		if(e.getActionCommand().equals("查询选课结果")  
-
-			&& !jTFQueryField.getText().isEmpty()){
+		if(e.getActionCommand().equals("查询选课结果") ){
 
 			System.out.println("actionPerformed(). 查询");
 
@@ -512,57 +583,39 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 
 			queryAllProcess();
 
-		}else if(e.getActionCommand().equals("插入选课")
-
-				&& !jTFsno.getText().isEmpty()
-
-				&& !jTFsname.getText().isEmpty()
-
-				&& !jTFcno.getText().isEmpty()
-
-				&& !jTFcname.getText().isEmpty()
-
-				&& !jTFcoom.getText().isEmpty()
-
-				&& !jTFcji.getText().isEmpty()
-
-				&& !jTFtea.getText().isEmpty()){
+		}else if(e.getActionCommand().equals("插入选课")){
 
 			System.out.println("actionPerformed(). 插入选课");
 
 			insertProcess();
 
-		}else if(e.getActionCommand().equals("修改选课")
-
-				&& !jTFsno.getText().isEmpty()
-
-				&& !jTFsname.getText().isEmpty()
-
-				&& !jTFcno.getText().isEmpty()
-
-				&& !jTFcname.getText().isEmpty()
-
-				&& !jTFcoom.getText().isEmpty()
-
-				&& !jTFcji.getText().isEmpty()
-
-				&& !jTFtea.getText().isEmpty()){
+		}else if(e.getActionCommand().equals("修改选课")){
 
 			System.out.println("actionPerformed(). 修改选课");
 
 			updateProcess();
+			
+			SetEnable(true);
 
-		}else if(e.getActionCommand().equals("删除当前记录")){
+		}else if(e.getActionCommand().equals("取消选课")){
 
 			System.out.println("actionPerformed(). 删除当前记录");
 
 			deleteCurrentRecordProcess();
+			
+			SetEnable(true);
 
 		}else if(e.getActionCommand().equals("删除所有记录")){
 
 			System.out.println("actionPerformed(). 删除所有记录");
 
 			deleteAllRecordsProcess();
+
+		}else if(e.getActionCommand().equals("取消")){
+
+			System.out.println("actionPerformed(). 取消");
+
+			SetEnable(true);
 
 		}
 
@@ -752,41 +805,10 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 
 		String sno = jTFsno.getText().trim();
 
-		String sname = jTFsname.getText().trim();
-
 		String cno = jTFcno.getText().trim();
 
-		String cname = jTFcname.getText().trim();
-
-		String croom = jTFcoom.getText().trim();
-
-
-		String cji = jTFcji.getText().trim();
-
-		String tea = jTFtea.getText().trim();
-
-		
-
+		String sql="insert into sc(sn,cn)values('"+sno+"','"+cno+"');";
 		// 建立插入条件
-
-		String sql = "insert into change_couse values('";
-
-		sql = sql + sno + "','";
-
-		sql = sql + sname + "','";
-
-		sql = sql + cno + "','";
-
-		sql = sql + cname + "','";
-
-		sql = sql + croom + "','";
-
-
-		sql = sql + cji + "','";
-
-		sql = sql + tea + "');";
-
-
 
 		System.out.println("insertProcess(). sql = " + sql);
 
@@ -807,7 +829,8 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 				"数据操作错误","错误",JOptionPane.ERROR_MESSAGE);
 
 		}
-
+		jTFsno.setText("");
+		jTFcno.setText("");
 		queryAllProcess();
 
 	}
@@ -819,39 +842,15 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 	{
 
 		String sno = jTFsno.getText().trim();
-
-		String sname = jTFsname.getText().trim();
-
-		String cno = jLcno.getText().trim();
-
-		String cname = jTFcname.getText().trim();
-
-		String croom = jTFcoom.getText().trim();
-
-		String cji = jTFcji.getText().trim();
-
-		String tea = jTFtea.getText().trim();
-
 		
+		String cno = jTFcno.getText().trim();
 
 		// 建立更新条件
 
-		String sql = "update change_couse set sname = '";
-
-		sql = sql + sname + "', cno = '";
-
-		sql = sql + cno + "', cname = '";
-
-		sql = sql + cname + "', croom = '";
-
-		sql = sql + croom + "', time = '";
+		String sql = "update sc set Cn = '"+ cno + "' WHERE Sn = '" + sno + "';";
 
 
-		sql = sql + cji + "', teacher = '";
-
-		sql = sql + tea + "'";
-
-		sql = sql + " WHERE sNo = '" + sno + "';";
+		
 
 		System.out.println("updateProcess(). sql = " + sql);
 
@@ -884,12 +883,12 @@ public class Man_StudentCourseSelect extends Panel implements ActionListener {
 	{
 
 		String sno = jTFsno.getText().trim();
-
 		
+		String cno= jTFcno.getText().trim();
 
 		// 建立删除条件
 
-		String sql = "delete from sn where sn = '" + sno + "';";
+		String sql = "delete from sc where sn = '" + sno + "' AND cn='"+cno+"';";
 
 		System.out.println("deleteCurrentRecordProcess(). sql = " + sql);
 

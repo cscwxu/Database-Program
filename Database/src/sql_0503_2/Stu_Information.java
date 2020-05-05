@@ -211,7 +211,7 @@ public class Stu_Information extends Panel implements ActionListener {
 			String newP=newPass.getText().trim();
 			try{
 				// 建立查询条件
-				String sql = "select * from student where Sn="+stu_id+";";
+				String sql = "select * from student where Sn='"+stu_id+"';";
 				System.out.println("queryProcess(). sql = " + sql);
 				dbProcess.connect();
 				ResultSet rs = dbProcess.executeQuery(sql);
@@ -263,7 +263,7 @@ public class Stu_Information extends Panel implements ActionListener {
 
 				// 建立查询条件
 
-				String sql = "select * from student where Sn="+stu_id+";";
+				String sql = "select * from student where Sn='"+stu_id+"';";
 
 			
 				System.out.println("queryProcess(). sql = " + sql);

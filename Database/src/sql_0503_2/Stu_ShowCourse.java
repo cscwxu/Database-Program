@@ -33,7 +33,7 @@ public class Stu_ShowCourse extends Panel implements ActionListener {
 	JTextField jCnc = null;//课程号
 	//定义界面上的button
 
-	JButton jBQuery,jBDelte = null;//查询
+	JButton jBQuery,jBDelte,jBCancle = null;//查询
 
 	JPanel jP1, jP2,jP3,jP4= null;
 
@@ -52,7 +52,22 @@ public class Stu_ShowCourse extends Panel implements ActionListener {
 	private static DbProcess dbProcess;
 
 	
+	private void SetEnable(boolean flag) {
+		if(flag) {
+			
+			jCnc.setText("");
+			
+			jBDelte.setEnabled(!flag);
+							
+			jBCancle.setEnabled(!flag);
+		}
+		else {
 
+			jBDelte.setEnabled(!flag);
+			
+			jBCancle.setEnabled(!flag);
+		}
+	}
 	// 构造函数
 
 	public Stu_ShowCourse(String id) {
@@ -64,12 +79,16 @@ public class Stu_ShowCourse extends Panel implements ActionListener {
 
 		jBQuery = new JButton("查询");
 		jBDelte =new JButton("取消选课");
+		jBCancle =new JButton("取消");
 		jCnl = new JLabel("课程号");//课程号
 		jCnc = new JTextField(20);
+		jCnc.setEditable(false);
 		// 设置监听
 
 		jBQuery.addActionListener(this);
 		jBDelte.addActionListener(this);
+		jBCancle.addActionListener(this);
+		SetEnable(true);
 		studentVector = new Vector();
 
 		titleVector = new Vector();
@@ -128,6 +147,7 @@ public class Stu_ShowCourse extends Panel implements ActionListener {
 
 				jCnc.setText((String) v.get(2));// 课程号
 				
+				SetEnable(false);
 
 			}
 
@@ -158,6 +178,7 @@ public class Stu_ShowCourse extends Panel implements ActionListener {
 		jP4.add(jCnl);
 		jP4.add(jCnc);
 		jPBottom.add(jBDelte);
+		jPBottom.add(jBCancle);
 		this.add(jPTop);
 
 		this.add(jP3);
@@ -198,14 +219,17 @@ public class Stu_ShowCourse extends Panel implements ActionListener {
 
 				//jTFQueryField.setText("");
 
-		}
-		else if(e.getActionCommand().equals("取消选课") ) {
+		}else if(e.getActionCommand().equals("取消选课") ) {
 			System.out.println("actionPerformed(). 取消选课");
 
 			deleteProcess();
+			SetEnable(true);
+		}
+		else if(e.getActionCommand().equals("取消")){
+			SetEnable(true);
 		}
 
-		}
+	}
 
 	/*
 
@@ -228,13 +252,16 @@ public class Stu_ShowCourse extends Panel implements ActionListener {
 		String sql = "delete from sc where sn = '" + stu_id + "' AND cn= '"+cn+"';";
 
 		System.out.println("deleteCurrentRecordProcess(). sql = " + sql);
+		int flag=1;
 
 		try{
 
 			if (dbProcess.executeUpdate(sql) < 1) {
 
 				System.out.println("deleteCurrentRecordProcess(). delete database failed.");
-
+				JOptionPane.showMessageDialog(null,
+						"退课失败，请稍后再试","错误",JOptionPane.ERROR_MESSAGE);
+				flag=0;
 			}
 
 		}catch(Exception e){
@@ -246,6 +273,9 @@ public class Stu_ShowCourse extends Panel implements ActionListener {
 				"数据操作错误","错误",JOptionPane.ERROR_MESSAGE);
 
 		}
+		if(flag==1) 
+			JOptionPane.showMessageDialog(null,
+					"退课成功","错误",JOptionPane.INFORMATION_MESSAGE);
 		queryProcess();
 		jCnc.setText("");
 	}

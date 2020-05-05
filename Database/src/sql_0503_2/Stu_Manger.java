@@ -37,7 +37,7 @@ public class Stu_Manger extends JFrame implements TreeSelectionListener {
 
 	public static void main(String[] args) {
 
-		Stu_Manger stu_M = new Stu_Manger("001");
+		Stu_Manger stu_M = new Stu_Manger("20170101");
 
 	}
 

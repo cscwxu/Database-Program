@@ -34,7 +34,7 @@ public class Tea_Manger extends JFrame implements TreeSelectionListener {
 
 	public static void main(String[] args) {
 
-		Tea_Manger stu_M = new Tea_Manger("001");
+		Tea_Manger stu_M = new Tea_Manger("10");
 
 	}
 

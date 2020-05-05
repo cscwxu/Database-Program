@@ -75,9 +75,11 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 
 		JButton jBQueryAll = null;//查询所有记录
 
-		JButton jBInsert = null;//插入
+		//JButton jBInsert = null;//插入
 
 		JButton jBUpdate = null;//更新
+		
+		JButton jBCancle=null;
 
 		//JButton jBDeleteCurrentRecord = null;//删除当前记录
 
@@ -111,7 +113,24 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 
 		String SelectQueryFieldStr = "学号";
 
-		
+		private void SetEnable(boolean flag) {
+			if(flag) {
+				
+				jTFscoer.setText("");
+				jTFscoer.setEditable(false);
+				
+				jBUpdate.setEnabled(!flag);
+								
+				jBCancle.setEnabled(!flag);
+			}
+			else {
+				jTFscoer.setEditable(true);
+
+				jBUpdate.setEnabled(!flag);
+				
+				jBCancle.setEnabled(!flag);
+			}
+		}
 
 		// 构造函数
 
@@ -134,7 +153,7 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 		    //jLcourseName = new JLabel("课程名");//课程名
 
 			jLscoer = new JLabel("成  绩");;//成绩
-
+			
 			
 
 			jTFQueryField = new JTextField(10);//查询字段
@@ -148,7 +167,7 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 			//jTFcourseName = new JTextField(18);//课程名
 
 		    jTFscoer = new JTextField(18);//成绩
-
+		    
 			
 
 			jBQuery = new JButton("查询");
@@ -158,6 +177,8 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 			//jBInsert = new JButton("插入");
 
 			jBUpdate = new JButton("更新");
+			
+			jBCancle =new JButton("取消");
 
 			//jBDeleteCurrentRecord = new JButton("删除当前记录");
 
@@ -172,6 +193,10 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 			//jBInsert.addActionListener(this);
 
 			jBUpdate.addActionListener(this);
+			
+			jBCancle.addActionListener(this);
+			
+			SetEnable(true);
 
 			//jBDeleteCurrentRecord.addActionListener(this);
 
@@ -288,7 +313,8 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 					//jTFcourseName.setText((String) v.get(3));// 课程名
 
 					jTFscoer.setText((String) v.get(4));// 成绩号
-
+						
+					SetEnable(false);
 				}
 
 			});
@@ -367,6 +393,7 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 			//jP5.add(jBInsert);
 
 			jP5.add(jBUpdate);
+			jP5.add(jBCancle);
 
 			//jP5.add(jBDeleteCurrentRecord);
 
@@ -452,8 +479,12 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 					System.out.println("actionPerformed(). 更新");
 
 					updateProcess();
+					SetEnable(false);
 
+				}else if(e.getActionCommand().equals("取消")){
+					SetEnable(true);
 				}
+			
 
 			}
 
@@ -483,7 +514,7 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 
 				// 建立查询条件
 
-				String sql = "select sc.Sn, s.Sname, sc.Cn, c.Cname, sc.Score from sc,course c,student s,teacher t where sc.Sn=s.Sn AND sc.Cn=c.Cn AND t.tn=c.tn AND t.tn="+tea_id+" AND ";
+				String sql = "select sc.Sn, s.Sname, sc.Cn, c.Cname, sc.Score from sc,course c,student s,teacher t where sc.Sn=s.Sn AND sc.Cn=c.Cn AND t.tn=c.tn AND t.tn='"+tea_id+"' AND ";
 
 				String queryFieldStr = jCBSelectQueryFieldTransfer(SelectQueryFieldStr);
 
@@ -580,7 +611,7 @@ public class Tea_StudentScore extends Panel implements ActionListener {
 				// 建立查询条件
 
 				//String sql = "select * from score;";
-				String sql = "select sc.Sn, s.Sname, sc.Cn, c.Cname, sc.Score from sc,course c,student s,teacher t where sc.Sn=s.Sn AND sc.Cn=c.Cn AND t.tn=c.tn AND t.tn="+tea_id+";";
+				String sql = "select sc.Sn, s.Sname, sc.Cn, c.Cname, sc.Score from sc,course c,student s,teacher t where sc.Sn=s.Sn AND sc.Cn=c.Cn AND t.tn=c.tn AND t.tn='"+tea_id+"';";
 
 				System.out.println("queryAllProcess(). sql = " + sql);
 

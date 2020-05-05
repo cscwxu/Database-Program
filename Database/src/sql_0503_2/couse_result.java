@@ -142,7 +142,7 @@ public class couse_result extends Panel implements ActionListener {
 
 		jLcname = new JLabel("课程名");
 
-		jLcoom = new JLabel("上课教室");
+		jLcoom = new JLabel("课程学时");
 
 		//jLteme = new JLabel("上课时间");
 
